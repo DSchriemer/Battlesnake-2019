@@ -27,7 +27,10 @@ app.post('/start', (request, response) => {
 
   // Response data
   const data = {
-    color: '#DFFF00',
+    color: "#bbebf8",
+    name: "Hugo, Destroyer of the Free World",
+    head_url: "https://images-na.ssl-images-amazon.com/images/I/61lL2qPoKtL._SX355_.jpg", // optional, but encouraged!
+    taunt: "The snake ain't real till the stache is", // optional, but encouraged!
   }
 
   return response.json(data)
