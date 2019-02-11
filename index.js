@@ -27,7 +27,9 @@ app.post('/start', (request, response) => {
 
   // Response data
   const data = {
-    color: '#DFFF00',
+    name:  'Smaug',
+    color: '#C70039',
+    taunt: 'Erebor is mine!'
   }
 
   return response.json(data)

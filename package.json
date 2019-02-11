@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "private": true,
   "author": "Sendwithus",
+  "contributers": [
+    "John Schriemer"
+  ],
   "repository": "https://github.com/sendwithus/battlesnake-node",
   "licenses": [
     {
