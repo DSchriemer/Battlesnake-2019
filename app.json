@@ -1,7 +1,12 @@
 {
   "name": "starter-snake-node",
   "description": "NodeJS starter snake",
-  "repository": "http://github.com/battlesnakeio/starter-snake-node",
+  "repository": "https://github.com/DSchriemer/Battlesnake-2019",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
-  "keywords": []
+  "keywords": [
+    "battlesnake",
+    "artificial intelligence",
+    "AI",
+    "javascript"
+  ]
 }
