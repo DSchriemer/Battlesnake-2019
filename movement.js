@@ -1,4 +1,4 @@
-//work in progress 2019
+//work in progress
 direction = "down";
 let movement = {
 
