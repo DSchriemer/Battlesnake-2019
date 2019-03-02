@@ -8,6 +8,7 @@ let movement = {
     //var zero = require('zeros');
     var PF = require('pathfinding');
 
+    const distance = require('manhattan')
     var input = request.body;         //board details
     var height = input.board.height;  //board height
     var width = input.board.width;    //board width
@@ -24,8 +25,9 @@ let movement = {
     var path = finder.findPath(head.x, head.y, food[0].x, food[0].y, grid);
 
 
-    console.log(path);
-    //console.log(body);
+    //console.log(path[1][0]);
+    //console.log(path[1]);
+    console.log(health);
 
     return(dance());
 
@@ -64,26 +66,29 @@ let movement = {
     function findFood(){
       var headX = head.x;
       var headY = head.y;
-      var closestX = food[0].x;
-      var closestY = food[0].y;
-      var minX =  Math.abs(headX - closestX);
-      var minY =  Math.abs(headY - closestY);
 
-      //to-do make sure x and y coordinate
-      //are for single food
+      //var dist = distance(food[0], head);
+      var closestFoodX = food[0].x;
+      var closestFoodY = food[0].y;
+
+      var initLength = (Math.abs(headX - food[0].x) + Math.abs(headY - food[0].y));
+
+
 
       for(var i = 0; i < food.length; i++){
-        if(Math.abs(headX - food[i].x) < minX){
-          closestX = food[i].x;
+        if((Math.abs(headX - food[i].x) + Math.abds(headY - food[0].y)) < initLength){
+           closestFoodX = food[i].x;
+           closestFoodX = food[i].y;
+           initLength = (Math.abs(headX - food[i].x) + Math.abds(headY - food[0].y))
         }
-        if(Math.abs(headY - food[i].y) < minY){
-          closestY = food[i].y;
-      }
     }
-    console.log("foodX: " + closestX + "  foodY: " + closestY);
-    console.log("x: " + head.x + "  y: " + head.y);
-    console.log("direction: " + direction);
-    if(head.x > closestX && (direction === "up" || direction === "down" || direction === "left")){
+    console.log(initLength);
+    console.log("X " + closestX + "Y " + closestY);
+
+    //console.log("closestFood " + closestFood + "  dist: " + dist);
+    //console.log("x: " + head.x + "  y: " + head.y);
+    //console.log("direction: " + direction);
+    /*if(head.x > closestX && (direction === "up" || direction === "down" || direction === "left")){
       direction = "left";
       return "left";
     }
@@ -100,7 +105,8 @@ let movement = {
       return "up";
     }
     direction = "up";
-    return("up");
+    return("up");*/
+    return("down");
   }
 
   /****

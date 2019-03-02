@@ -31,11 +31,11 @@ app.post('/start', (request, response) => {
   const data = {
     color: "#C70039",
     secondary_color: "#00FF00",
-    name: "Hugo, Destroyer of the Free World",
-    //"head_url": "https://images-na.ssl-images-amazon.com/images/I/61lL2qPoKtL._SX355_.jpg", // optional, but encouraged!
-    taunt: "hiss", // optional, but encouraged!
-    "headType": "pixel",
-    "tailType": "pixel"
+    name: "Smaug, the terrible",
+    head_url: "https://pbs.twimg.com/profile_images/2931866544/127b863ca71b759a41cacd9715435a99.jpeg", // optional, but encouraged!
+    taunt: "I am King Under the Mountain!", // optional, but encouraged!
+    headType: "evil",
+    tailType: "pixel"
   }
 
   return response.json(data)
@@ -46,7 +46,10 @@ app.post('/move', (request, response) => {
 
   const data = {
       move: movement.slither(request),
-      taunt: "woof",
+      taunt: ["I am fire, I am death.",
+              "My teeth are swords!",
+              "You will burn!"
+      ],
   }
 
   return response.json(data)
