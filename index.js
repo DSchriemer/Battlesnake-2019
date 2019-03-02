@@ -27,17 +27,9 @@ app.use(poweredByHandler)
 // Handle POST request to '/start'
 app.post('/start', (request, response) => {
   // NOTE: Do something here to start the game
-  function colorMe(){
-    var randomNumb = Math.floor((Math.random() * 2) + 1);
-    if(randomNumb == 1){
-      return "#C70039";
-    }else if(randomNumb == 2){
-      return "#FF5733";
-  }
-}
   // Response data
   const data = {
-    color: colorMe(),
+    color: "#C70039",
     secondary_color: "#00FF00",
     name: "Hugo, Destroyer of the Free World",
     //"head_url": "https://images-na.ssl-images-amazon.com/images/I/61lL2qPoKtL._SX355_.jpg", // optional, but encouraged!
