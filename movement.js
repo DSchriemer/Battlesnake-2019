@@ -4,10 +4,7 @@ let movement = {
 
   slither: function(request) {
 
-    //var fill = require('flood-fill');
-    //var zero = require('zeros');
     var PF = require('pathfinding');
-
     const distance = require('manhattan')
     var input = request.body;         //board details
     var height = input.board.height;  //board height
@@ -17,22 +14,18 @@ let movement = {
     var health = input.you.health;    //snake health
     var food = input.board.food;      //food locations
     const foodSearch = 30;            //health for food search
+    var grid = new PF.Grid(width, height); //create grid
+    var finder = new PF.AStarFinder(); //select A*
+    var gridBackup = grid.clone(); //clone grid
 
-    //var grid = zero([width, height]);
-    var grid = new PF.Grid(width, height);
-    var finder = new PF.AStarFinder();
-    var gridBackup = grid.clone();
-    var path = finder.findPath(head.x, head.y, food[0].x, food[0].y, grid);
+    var initLength = (Math.abs(head.x - food[0].x) + Math.abs(head.y - food[0].y));
 
+    console.log(input.turn);
 
-    //console.log(path[1][0]);
-    //console.log(path[1]);
-    console.log(health);
-
-    return(dance());
+    return(dance()); //LETS DANCE
 
     function dance(){
-      //Distance from snake to Walls
+
       var wallN = head.y; //top = 0
       var wallS = height - head.y;
       var wallE = head.x; //east = 0
@@ -57,80 +50,46 @@ let movement = {
               direction = "down";
               return "down";
           }
-
         }
         return(findFood());
-
   }
 
     function findFood(){
-      var headX = head.x;
-      var headY = head.y;
 
-      //var dist = distance(food[0], head);
       var closestFoodX = food[0].x;
       var closestFoodY = food[0].y;
-
-      var initLength = (Math.abs(headX - food[0].x) + Math.abs(headY - food[0].y));
-
-
+      var count = 0;
 
       for(var i = 0; i < food.length; i++){
-        if((Math.abs(headX - food[i].x) + Math.abds(headY - food[0].y)) < initLength){
+        if((Math.abs(head.x - food[i].x) + Math.abs(head.y - food[i].y)) < initLength){
            closestFoodX = food[i].x;
-           closestFoodX = food[i].y;
-           initLength = (Math.abs(headX - food[i].x) + Math.abds(headY - food[0].y))
+           closestFoodY = food[i].y;
+           count = i;
+           initLength = (Math.abs(head.x - food[i].x) + Math.abs(head.y - food[i].y))
         }
     }
-    console.log(initLength);
-    console.log("X " + closestX + "Y " + closestY);
+    //var path = finder.findPath(head.x, head.y, food[count].x, food[count].y, grid); //find path
 
-    //console.log("closestFood " + closestFood + "  dist: " + dist);
-    //console.log("x: " + head.x + "  y: " + head.y);
-    //console.log("direction: " + direction);
-    /*if(head.x > closestX && (direction === "up" || direction === "down" || direction === "left")){
+    if(head.x > closestFoodX && (direction === "up" || direction === "down" || direction === "left")){
       direction = "left";
       return "left";
     }
-    if(head.x <= closestX && (direction === "up" || direction === "down" || direction === "right")){
+    if(head.x <= closestFoodX && (direction === "up" || direction === "down" || direction === "right")){
       direction = "right";
       return "right";
     }
-    if(head.y <= closestY && (direction === "right" || direction === "left" || direction === "down")){
+    if(head.y <= closestFoodY && (direction === "right" || direction === "left" || direction === "down")){
       direction = "down";
       return "down";
     }
-    if(head.y > closestY && (direction === "right" || direction === "left" || direction === "up")){
+    if(head.y > closestFoodY && (direction === "right" || direction === "left" || direction === "up")){
       direction = "up";
       return "up";
     }
     direction = "up";
-    return("up");*/
-    return("down");
+    return("up");
+
   }
-
-  /****
-  Check and see if direction will not result
-  in a collison with other snakes or my snake.
-  Take direction and scan spot. If spot is unsafe,
-  find a spot that is safe. If spot is safe continue
-  on the path. Return true?
-  ****/
-
-  /****
-  new idea create a 2d array of unsafe coordinates and
-  get rid of them completely
-  ****/
-
-
-  //function avoidSnek(direction){
-  //  if(direction === "right" && (head.x - 1) !=  ){
-
-  //  }
-//  }
-
-
-
 
 
 
